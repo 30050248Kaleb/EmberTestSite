@@ -1,0 +1,63 @@
+<h2>{{@title}}</h2>
+
+<p>Minecraft enchantments and their properties.</p>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+{{#each @enchantments as |enchantment|}}
+  <div class="col">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{enchantment.displayName}}
+        <span class="badge bg-secondary">{{enchantment.category}}</span></h5>
+      <p class="card-text">
+        {{#if enchantment.tradeable}}
+        <span class="badge bg-success">Tradeable</span>
+      {{else}}
+        <span class="badge bg-danger">Not Tradeable</span>
+      {{/if}}
+
+      {{#if enchantment.discoverable}}
+        <span class="badge bg-success">Discoverable</span>
+      {{else}}
+        <span class="badge bg-danger">Not Discoverable</span>
+      {{/if}}
+
+      {{#if enchantment.treasureOnly}}
+        <span class="badge bg-info">Treasure Only</span>
+      {{/if}}
+
+      {{#if enchantment.curse}}
+        <span class="badge bg-danger">Curse</span>
+        {{/if}}
+        </p>
+      <button type="button" class="btn btn-light text-dark" {{on "click" (fn this.showEnchantment enchantment)}}>Get Enchantment ID</button>
+    </div>
+  </div>
+ </div>
+{{/each}}
+</div>
+{{!-- "id": 0,
+    "name": "protection",
+    "displayName": "Protection",
+    "maxLevel": 4,
+    "minCost": {
+      "a": 11,
+      "b": -10
+    },
+    "maxCost": {
+      "a": 11,
+      "b": 1
+    },
+    "treasureOnly": false,
+    "curse": false,
+    "exclude": [
+      "fire_protection",
+      "blast_protection",
+      "projectile_protection"
+    ],
+    "category": "armor",
+    "weight": 10,
+    "tradeable": true,
+    "discoverable": true --}}
+
+{{yield}}
